@@ -1,0 +1,100 @@
+/* ============================================================
+   div.css — розмітка за допомогою блоків div (макети а–д)
+   Спочатку мобільний варіант (колонка), потім CSS Grid для широких екранів
+   ============================================================ */
+.layout-div {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.layout-div > .blk { flex: 0 0 auto; }
+.layout-div > .a-main { flex: 1 0 auto; }
+
+.pane {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 14px;
+  background: #ffffff;
+}
+
+.o1 { order: 1; } .o2 { order: 2; } .o3 { order: 3; }
+.o4 { order: 4; } .o5 { order: 5; }
+
+.is-main { padding: 22px 18px; }
+
+/* ---------- Широкі екрани: сітка ---------- */
+@media (min-width: 769px) {
+  .layout-div { display: grid; }
+  .layout-div > .a-main { flex: none; }
+
+  .a-head   { grid-area: head; }
+  .a-nav    { grid-area: nav; }
+  .a-aside  { grid-area: aside; }
+  .a-main   { grid-area: main; }
+  .a-foot   { grid-area: foot; }
+  .a-pane   { grid-area: pane; }
+  .a-banner { grid-area: banner; }
+  .a-extra  { grid-area: extra; }
+
+  .is-main { padding: 28px 34px; }
+
+  /* а) ліва колонка на всю висоту; праворуч шапка, текст, підвал */
+  .v-a {
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+      "nav head"
+      "nav main"
+      "nav foot";
+  }
+
+  /* б) шапка, ліва колонка, смуга над текстом, підвал */
+  .v-b {
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: auto auto 1fr auto;
+    grid-template-areas:
+      "head head"
+      "nav  aside"
+      "nav  main"
+      "foot foot";
+  }
+
+  /* в) шапка, [5] [текст] [2], підвал */
+  .v-v {
+    grid-template-columns: 200px 1fr 200px;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+      "head  head head"
+      "aside main nav"
+      "foot  foot foot";
+  }
+
+  /* г) шапка, [2] [текст] [5], підвал */
+  .v-g {
+    grid-template-columns: 200px 1fr 200px;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+      "head head head"
+      "nav  main aside"
+      "foot foot foot";
+  }
+
+  /* д) шапка, меню, біла область з банером, текстом та панеллю, підвал */
+  .v-d {
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+      "head head"
+      "nav  pane"
+      "foot foot";
+  }
+  .pane {
+    display: grid;
+    grid-template-columns: 1fr 190px;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      "banner banner"
+      "main   extra";
+  }
+}
