@@ -1,0 +1,125 @@
+/* ============================================================
+   base.css — спільні стилі для всіх макетів (таблиця та div)
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+body {
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1.55;
+  color: #1f2933;
+  background: #ffffff;
+}
+
+/* ---------- Кольорові теми блоків ---------- */
+.tone-blue   { --bg: #2f6fed; --bg-h: #1a4fc0; --fg: #ffffff; --accent: #0b2a7a; }
+.tone-yellow { --bg: #ffcb2e; --bg-h: #ffb400; --fg: #3b2f00; --accent: #8a5a00; }
+.tone-white  { --bg: #ffffff; --bg-h: #eef5ff; --fg: #1f2933; --accent: #2f6fed; }
+.tone-red    { --bg: #ff5252; --bg-h: #e23636; --fg: #ffffff; --accent: #7a0c0c; }
+
+/* ---------- Загальний вигляд блоку ---------- */
+.blk {
+  background: var(--bg);
+  color: var(--fg);
+  padding: 18px 20px;
+  overflow-wrap: anywhere;
+  cursor: default;
+  outline: 1px solid rgba(0, 0, 0, .3);   /* тонка межа між блоками, як на схемі */
+  outline-offset: -1px;
+  transition: background-color .3s ease, box-shadow .3s ease,
+              letter-spacing .3s ease, text-shadow .3s ease;
+}
+.blk:hover { background: var(--bg-h); }
+
+.blk-title { font-weight: 700; font-size: 1.05rem; margin-bottom: 6px; }
+.blk p     { margin: .3em 0; }
+.blk-small { font-size: .9rem; opacity: .9; }
+
+/* ---------- Власний стиль і реакція на курсор для кожного блоку ---------- */
+/* Блок 1 — шапка: нижня смуга + розрядка літер */
+.b1 { font-size: 1.15rem; text-align: center; }
+.b1:hover { box-shadow: inset 0 -6px 0 var(--accent); letter-spacing: .05em; }
+
+/* Блок 2 — навігація: бічна смуга зліва */
+.b2 { font-size: 1rem; }
+.b2:hover { box-shadow: inset 8px 0 0 var(--accent); }
+
+/* Блок 3 — підвал / основний текст (у макеті д): верхня смуга */
+.b3 { font-size: .95rem; text-align: center; }
+.b3:hover { box-shadow: inset 0 6px 0 var(--accent); }
+
+/* Блок 4 — основний блок / додаткова панель: бічна смуга справа */
+.b4:hover { box-shadow: inset -8px 0 0 var(--accent); }
+
+/* Блок 5 — додаткова панель / підвал (у макеті д): рамка + жирний текст */
+.b5 { font-size: .95rem; }
+.b5:hover { box-shadow: inset 0 0 0 4px var(--accent); font-weight: 600; }
+
+/* Банер (макет д) */
+.banner { text-align: center; font-weight: 600; }
+.banner:hover { box-shadow: inset 0 0 22px rgba(0, 0, 0, .35); text-shadow: 0 1px 3px rgba(0, 0, 0, .4); }
+
+/* Шапка з пошуком (макет д) */
+.bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.search {
+  width: min(240px, 100%);
+  padding: 8px 12px;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  font: inherit;
+  font-size: .95rem;
+  letter-spacing: normal;
+  transition: border-color .3s ease, box-shadow .3s ease;
+}
+.search:hover, .search:focus { border-color: #8a5a00; outline: none; box-shadow: 0 0 0 3px rgba(138, 90, 0, .25); }
+
+/* ---------- Основний (білий) блок з текстом ---------- */
+.is-main { padding: 28px 34px; text-align: left; }
+.is-main:hover { background: var(--bg-h); }
+.framed  { border: 2px solid #c9d3df; }
+
+.content h1 {
+  margin: 0 0 .6em;
+  font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+  line-height: 1.2;
+  color: #0b2a7a;
+  border-bottom: 3px solid #ffcb2e;
+  padding-bottom: .3em;
+}
+.content p  { margin: 0 0 1em; }
+.content ul { margin: 0 0 1em; padding-left: 1.3em; }
+.content li { margin-bottom: .4em; }
+.content .mark {
+  background: #fff1a8;
+  padding: 0 .3em;
+  border-radius: 3px;
+  font-weight: 600;
+}
+.content .note {
+  margin: 0 0 1em;
+  padding: 12px 16px;
+  background: #eaf2ff;
+  border-left: 4px solid #2f6fed;
+  border-radius: 4px;
+  transition: background-color .3s ease, border-color .3s ease;
+}
+.content .note:hover { background: #d5e5ff; border-color: #ffb400; }
+
+/* ---------- Плаваюча панель перемикання сторінок ---------- */
+.switcher {
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  z-index: 50;
+  display: flex;
+  gap: 4px;
+  padding: 5px 6px;
+  background: rgba(20, 24, 40, .85);
+  border-radius: 8px;
+  font-size: .8rem;
+  letter-spacing: normal;
+}
+.switcher a { color: #ffffff; text-decoration: none; padding: 3px 9px; border-radius: 5px; }
+.switcher a:hover { background: rgba(255, 255, 255, .22); }
+.switcher a.cur { background: #2f6fed; }
